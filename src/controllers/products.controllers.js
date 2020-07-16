@@ -1,5 +1,6 @@
 const { getConnection } = require("../database");
 
+let idCoupon = 1;
 
 const getProducts = (req, res) => {
     if (req.headers.auth === "admin") {
@@ -35,7 +36,24 @@ const getProduct = (req, res) => {
     }
 };
 
+
+
+const createCoupon = (req, res) => {
+    const newCoupon = {
+        id: idCoupon,
+        name: req.body.name,
+        description: req.body.description,
+        product_id: req.body.productId,
+        valid_since: req.body.valid_since,
+        valid_until: req.body.valid_until
+    };
+    idCoupon = idCoupon + 1;
+    getConnection().get("coupon").push(newCoupon).write();
+    res.send(newCoupon);
+}
+
 module.exports = {
     getProducts,
-    getProduct
+    getProduct,
+    createCoupon
 }
