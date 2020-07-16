@@ -36,8 +36,6 @@ const getProduct = (req, res) => {
     }
 };
 
-
-
 const createCoupon = (req, res) => {
     const newCoupon = {
         id: idCoupon,
@@ -52,8 +50,26 @@ const createCoupon = (req, res) => {
     res.send(newCoupon);
 }
 
+const getCoupons = (req, res) => {
+    if (req.headers.auth === "admin") {
+        const coupon = getConnection().get("coupon").value();
+        res.json(coupon);
+    } else {
+        if (req.headers.auth === "customer") {
+            res.status(403).send({
+                error: 'autenticacion incorrecta'
+            });
+        } else {
+            res.status(401).send({
+                error: 'denegado'
+            });
+        }
+    }
+};
+
 module.exports = {
     getProducts,
     getProduct,
-    createCoupon
+    createCoupon,
+    getCoupons
 }
