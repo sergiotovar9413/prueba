@@ -67,9 +67,28 @@ const getCoupons = (req, res) => {
     }
 };
 
+
+const getCoupon = (req, res) => {
+    if (req.headers.auth === "admin") {
+        const coupon = getConnection().get("coupon").find({ id: Number(req.params.id) }).value();
+        res.json(coupon);
+    } else {
+        if (req.headers.auth === "customer") {
+            res.status(403).send({
+                error: 'autenticacion incorrecta'
+            });
+        } else {
+            res.status(401).send({
+                error: 'denegado'
+            });
+        }
+    }
+};
+
 module.exports = {
     getProducts,
     getProduct,
     createCoupon,
-    getCoupons
+    getCoupons,
+    getCoupon
 }
