@@ -21,14 +21,21 @@
     {
       "id": 1,
       "name": "Bono 1",
-      "description": "Descripcion 1",
+      "description": "Descrpcion 1",
       "valid_since": "2020-02-25T00:00:00.000",
       "valid_until": "2020-02-25T23:59:00.999"
     },
     {
       "id": 2,
       "name": "Bono 2",
-      "description": "Descripcion 2",
+      "description": "Descrpcion 2",
+      "valid_since": "2020-02-25T00:00:00.000",
+      "valid_until": "2020-02-25T23:59:00.999"
+    },
+    {
+      "id": 3,
+      "name": "Bono 3",
+      "description": "Descrpcion 3",
       "valid_since": "2020-02-25T00:00:00.000",
       "valid_until": "2020-02-25T23:59:00.999"
     }
